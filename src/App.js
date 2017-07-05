@@ -1,4 +1,5 @@
 import React from 'react'
+import Webboard from './components/Webboard'
 
-const App = () => <h1>Welcome to react-minimum-starter</h1>
+const App = () => <Webboard />
 export default App

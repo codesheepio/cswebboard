@@ -1,4 +1,41 @@
-.title {
+body {
+  background: #002b36;
+}
+.webboard > .title {
   font-size: 30px;
-  color: #ff00ff;
+  color: #d33682;
+  margin: 10px;
+}
+.topic {
+  background: #073642;
+  border: 1px solid #657b83;
+  margin: 10px;
+  padding: 10px;
+}
+
+.topic > .title {
+  font-size: 24px;
+  color: #586375;
+}
+.topic > .content {
+  font-size: 18px;
+  color: #030303;
+}
+
+.loader {
+  border: 10px solid #93a1a1;
+  border-top: 10px solid #657b83;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
