@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Topic from './Topic'
+import * as api from '../api'
 
 export default class Webboard extends Component {
   constructor(props) {
@@ -11,13 +12,8 @@ export default class Webboard extends Component {
   }
   componentDidMount() {
     this.setState({ loading: true })
-    fetch('http://localhost:3000/api/topics')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(response.statusText)
-        }
-        return response.json()
-      })
+    api
+      .get('http://localhost:3000/api/topics')
       .then(json => {
         this.setState({
           loading: false,
