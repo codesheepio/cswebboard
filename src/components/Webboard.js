@@ -1,37 +1,19 @@
 import React, { Component } from 'react'
-import Topic from './Topic'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import TopicList from './TopicList'
+import TopicDetail from './TopicDetail'
+import PageNotFound from './PageNotFound'
 import * as api from '../api'
 
-export default class Webboard extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      loading: false,
-      topics: [],
-    }
-  }
-  componentDidMount() {
-    this.setState({ loading: true })
-    api
-      .get('http://localhost:3000/api/topics')
-      .then(json => {
-        this.setState({
-          loading: false,
-          topics: json,
-        })
-      })
-      .catch(err => console.log(err))
-  }
-  render() {
-    return (
-      <div className="webboard">
-        <div className="title">CS Webboard</div>
-        <div className="topic-container">
-          {this.state.loading
-            ? <div className="loader" />
-            : this.state.topics.map(topic => <Topic {...topic} />)}
-        </div>
-      </div>
-    )
-  }
-}
+const Webboard = () =>
+  <div className="webboard">
+    <div className="title">CS Webboard</div>
+    <Switch>
+      <Route exact path="/topics" component={TopicList} />
+      <Route path="/topics/:id" component={TopicDetail} />
+      <Redirect from="/" to="/topics" />
+      <Route component={PageNotFound} />
+    </Switch>
+  </div>
+
+export default Webboard
