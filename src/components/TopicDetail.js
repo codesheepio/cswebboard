@@ -36,9 +36,6 @@ export default class TopicDetail extends Component {
       <div>
         <Topic {...this.state.topic} />
         {this.state.comments.map(comment => <Comment {...comment} />)}
-        <Link to="/topics" className="btn">
-          Back
-        </Link>{' '}
       </div>
     )
   }
