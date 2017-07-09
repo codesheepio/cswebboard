@@ -38,7 +38,7 @@ export default class TopicDetail extends Component {
         {this.state.comments.map(comment => <Comment {...comment} />)}
         <Link to="/topics" className="btn">
           Back
-        </Link>{' '}
+        </Link>
       </div>
     )
   }
