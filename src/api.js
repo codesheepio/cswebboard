@@ -1,15 +1,15 @@
-export const get = url => {
+export const get = async url => {
   return fetch(url)
     .then(response => {
       if (!response.ok) {
-        throw new Error(response.statusText)
+        throw new Error(response.statusText);
       }
-      return response.json()
+      return response.json();
     })
-    .catch(err => Promise.reject(err))
-}
+    .catch(err => Promise.reject(err));
+};
 
-export const post = (url, json) => {
+export const post = async (url, json) => {
   return fetch(url, {
     method: 'POST',
     mode: 'cors',
@@ -17,9 +17,9 @@ export const post = (url, json) => {
   })
     .then(response => {
       if (!response.ok) {
-        throw new Error(response.statusText)
+        throw new Error(response.statusText);
       }
-      return response.json()
+      return response.json();
     })
-    .catch(err => Promise.reject(err))
-}
+    .catch(err => Promise.reject(err));
+};

@@ -1,9 +1,13 @@
-var path = require('path')
-var webpack = require('webpack')
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
   devtool: 'eval-source-map',
-  entry: ['react-hot-loader/patch', path.resolve('src/index.js')],
+  entry: [
+    'react-hot-loader/patch',
+    'babel-polyfill',
+    path.resolve('src/index.js'),
+  ],
   output: {
     filename: 'bundle.js',
     path: path.resolve('dist'),
@@ -37,4 +41,4 @@ module.exports = {
     hot: true,
     historyApiFallback: true,
   },
-}
+};
