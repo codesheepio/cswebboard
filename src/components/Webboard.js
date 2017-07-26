@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import TopicList from './TopicList'
 import TopicDetail from './TopicDetail'
+import Login from './Login'
+import Signup from './Signup'
 import PageNotFound from './PageNotFound'
 import * as api from '../api'
 
@@ -11,6 +13,8 @@ const Webboard = () =>
     <Switch>
       <Route exact path="/topics" component={TopicList} />
       <Route path="/topics/:id" component={TopicDetail} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
       <Redirect from="/" to="/topics" />
       <Route component={PageNotFound} />
     </Switch>
