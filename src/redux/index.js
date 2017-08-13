@@ -47,11 +47,13 @@ const reducer = (state = initialState, action) => {
 }
 
 const configStore = () => {
+  // Running on nodejs disable devtool
+  if (typeof window === 'undefined') {
+    return createStore(reducer)
+  }
   return createStore(
     reducer,
-    window &&
-      window.__REDUX_DEVTOOLS_EXTENSION__ &&
-      window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 }
 
