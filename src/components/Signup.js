@@ -19,19 +19,13 @@ export default class Signup extends Component {
     this.signup = this.signup.bind(this)
   }
   handleEmailChange(event) {
-    this.setState({
-      email: event.target.value,
-    })
+    this.props.emailChange(event.target.value)
   }
   handlePasswordChange(event) {
-    this.setState({
-      password: event.target.value,
-    })
+    this.props.passwordChange(event.target.value)
   }
   handleConfirmPasswordChange(event) {
-    this.setState({
-      confirm: event.target.value,
-    })
+    this.props.confirmChange(event.target.value)
   }
   async signup() {
     const { email, password, confirm } = this.state
@@ -83,7 +77,7 @@ export default class Signup extends Component {
             </div>}
           <input
             className="field btn"
-            type="button"
+            type="submit"
             value="Signup"
             onClick={this.signup}
           />

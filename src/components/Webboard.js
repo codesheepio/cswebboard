@@ -3,7 +3,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import TopicList from './TopicList'
 import TopicDetail from './TopicDetail'
 import Login from './Login'
-import Signup from './Signup'
+import Signup from '../containers/Signup'
 import PageNotFound from './PageNotFound'
 import * as api from '../api'
 
