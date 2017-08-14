@@ -5,12 +5,6 @@ import * as api from '../api'
 export default class Signup extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      email: '',
-      password: '',
-      confirm: '',
-      error: '',
-    }
     this.handleEmailChange = this.handleEmailChange.bind(this)
     this.handlePasswordChange = this.handlePasswordChange.bind(this)
     this.handleConfirmPasswordChange = this.handleConfirmPasswordChange.bind(
@@ -28,7 +22,7 @@ export default class Signup extends Component {
     this.props.confirmChange(event.target.value)
   }
   async signup() {
-    const { email, password, confirm } = this.state
+    const { email, password, confirm } = this.props
     if (password === confirm) {
       try {
         const credential = await api.post('http://localhost:3000/api/users', {
@@ -42,12 +36,11 @@ export default class Signup extends Component {
         })
       }
     } else {
-      this.setState({
-        error: 'password mismatched',
-      })
+      this.props.validateError('password mismatched')
     }
   }
   render() {
+    console.log(this.props.error)
     return (
       <div className="form-container">
         <div className="form">
@@ -71,9 +64,9 @@ export default class Signup extends Component {
             type="password"
             onChange={this.handleConfirmPasswordChange}
           />
-          {this.state.error &&
+          {this.props.error &&
             <div className="danger">
-              {this.state.error}
+              {this.props.error}
             </div>}
           <input
             className="field btn"
