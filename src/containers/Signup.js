@@ -13,13 +13,15 @@ const mapStateToProps = state => ({
   email: state.signup.email,
   password: state.signup.password,
   confirm: state.signup.confirm,
-  error: state.signup.error,
+  error: state.signup.error || state.auth.error,
+  loading: state.auth.loading,
 })
 const mapDispatchToProps = {
   emailChange,
   passwordChange,
   confirmChange,
   validateError,
+  signup,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Signup)

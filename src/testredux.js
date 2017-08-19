@@ -1,14 +1,6 @@
 import configStore from './redux'
-import {
-  emailChange,
-  passwordChange,
-  confirmChange,
-  validateError,
-} from './redux/modules/signup'
+import { signup } from './redux/modules/auth'
 
 const store = configStore()
 store.subscribe(() => console.log(store.getState()))
-store.dispatch(emailChange('topscores@gmail.com'))
-store.dispatch(passwordChange('secret'))
-store.dispatch(confirmChange('secret'))
-store.dispatch(validateError('password mismatched!!!'))
+store.dispatch(signup('topscores@gmail.com', '1234'))

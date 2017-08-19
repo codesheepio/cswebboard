@@ -24,23 +24,12 @@ export default class Signup extends Component {
   async signup() {
     const { email, password, confirm } = this.props
     if (password === confirm) {
-      try {
-        const credential = await api.post('http://localhost:3000/api/users', {
-          email,
-          password,
-        })
-        window.location = '/login'
-      } catch (err) {
-        this.setState({
-          error: 'cannot create user',
-        })
-      }
+      this.props.signup(email, password)
     } else {
       this.props.validateError('password mismatched')
     }
   }
   render() {
-    console.log(this.props.error)
     return (
       <div className="form-container">
         <div className="form">
@@ -72,6 +61,7 @@ export default class Signup extends Component {
             className="field btn"
             type="submit"
             value="Signup"
+            disabled={this.loading}
             onClick={this.signup}
           />
         </div>

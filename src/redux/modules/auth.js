@@ -1,14 +1,24 @@
+import * as api from '../../api'
+
 // action creators
-export const signup = () => ({
-  type: 'SIGNUP',
-})
-export const signupSuccess = (id, accessToken, email) => ({
+export const signup = (email, password) => {
+  return async dispatch => {
+    dispatch({ type: 'SIGNUP' })
+    try {
+      const credential = await api.post('http://localhost:3000/api/users', {
+        email,
+        password,
+      })
+      window.location = '/login'
+      dispatch(signupSuccess())
+    } catch (err) {
+      console.log(err)
+      dispatch(signupFail('cannot create user'))
+    }
+  }
+}
+export const signupSuccess = () => ({
   type: 'SIGNUP_SUCCESS',
-  payload: {
-    id,
-    accessToken,
-    email,
-  },
 })
 export const signupFail = error => ({
   type: 'SIGNUP_FAIL',

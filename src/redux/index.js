@@ -1,6 +1,15 @@
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
 
 const initialState = {
+  auth: {
+    id: '',
+    accessToken: '',
+    email: '',
+    error: '',
+    loading: false,
+  },
   signup: {
     email: '',
     password: '',
@@ -42,6 +51,34 @@ const reducer = (state = initialState, action) => {
           error: action.payload,
         },
       }
+    case 'SIGNUP': {
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          loading: true,
+        },
+      }
+    }
+    case 'SIGNUP_SUCCESS': {
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          loading: false,
+        },
+      }
+    }
+    case 'SIGNUP_FAIL': {
+      return {
+        ...state,
+        auth: {
+          ...state.auth,
+          loading: false,
+          error: action.payload,
+        },
+      }
+    }
     default:
       return state
   }
@@ -50,12 +87,10 @@ const reducer = (state = initialState, action) => {
 const configStore = () => {
   // Running on nodejs disable devtool
   if (typeof window === 'undefined') {
-    return createStore(reducer)
+    return createStore(reducer, applyMiddleware(thunk))
   }
-  return createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-  )
+  const composeEnhancers = composeWithDevTools({})
+  return createStore(reducer, composeEnhancers(applyMiddleware(thunk)))
 }
 
 export default configStore
