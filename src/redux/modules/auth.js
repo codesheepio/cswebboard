@@ -48,3 +48,37 @@ export const logoutSuccess = () => ({
 export const logoutFail = () => ({
   type: 'LOGOUT_FAIL',
 })
+
+const initialState = {
+  id: '',
+  accessToken: '',
+  email: '',
+  error: '',
+  loading: false,
+}
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case 'SIGNUP': {
+      return {
+        ...state,
+        loading: true,
+      }
+    }
+    case 'SIGNUP_SUCCESS': {
+      return {
+        ...state,
+        loading: false,
+      }
+    }
+    case 'SIGNUP_FAIL': {
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      }
+    }
+    default:
+      return state
+  }
+}
+export default reducer
