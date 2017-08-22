@@ -5,13 +5,10 @@ import thunk from 'redux-thunk'
 import authReducer from './modules/auth'
 import signupReducer from './modules/signup'
 
-const initialState = {}
-const reducer = (state = initialState, action) => {
-  return {
-    auth: authReducer(state.auth, action),
-    signup: signupReducer(state.signup, action),
-  }
-}
+const reducer = combineReducer({
+  auth: authReducer,
+  signup: signupReducer,
+})
 const configStore = () => {
   // Running on nodejs disable devtool
   if (typeof window === 'undefined') {
